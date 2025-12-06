@@ -1,0 +1,21 @@
+{
+  "name": "chatkit",
+  "version": "1.0.0",
+  "description": "Express server that serves a ChatKit landing page linking to an OpenAI Agent Builder workflow.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "node server.js --check"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
