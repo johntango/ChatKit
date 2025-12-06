@@ -43,3 +43,4 @@ public/             # Static assets served by Express
 - Swap the hero copy or add more sections under `public/index.html`.
 - Inject telemetry (e.g., PostHog, Segment) in `public/app.js` for click tracking.
 - Extend `server.js` with additional routes that proxy or validate Agent Builder payloads before launching the workflow.
+- Customize the embedded `<openai-chatkit>` widget in `public/app.js` with your own header actions, composer defaults, or tool callbacks. The widget script is loaded securely from `https://cdn.platform.openai.com/deployments/chatkit/chatkit.js`.

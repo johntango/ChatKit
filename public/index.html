@@ -68,6 +68,44 @@
             UI polish.
           </p>
         </article>
+        <section class="chatkit-lab">
+          <div class="chatkit-lab__copy">
+            <p class="eyebrow">Embedded ChatKit</p>
+            <h2>Preview the Agent Builder workflow right inside ChatKit</h2>
+            <p>
+              The panel on the right loads OpenAI&apos;s hosted ChatKit widget
+              from the official CDN. We configure its header action so anyone
+              can jump directly into the linked Agent Builder workflow.
+            </p>
+            <ul>
+              <li>
+                Hosted widget served from <code>cdn.platform.openai.com</code>
+              </li>
+              <li>
+                Header CTA mirrors the workflow link you configure in the
+                backend
+              </li>
+              <li>
+                Ready to extend with client tools or workflow streaming later
+              </li>
+            </ul>
+          </div>
+          <div class="chatkit-lab__panel" aria-live="polite">
+            <div class="chatkit-lab__panel-frame">
+              <openai-chatkit
+                id="chatkit-panel"
+                data-color-scheme="dark"
+              ></openai-chatkit>
+              <div class="chatkit-panel__fallback" data-chatkit-fallback>
+                <p>Loading ChatKit…</p>
+                <p class="micro">
+                  If nothing appears, verify the CDN script is reachable from
+                  your network.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
     </main>
 
@@ -78,6 +116,11 @@
       </p>
     </footer>
 
+    <script
+      src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
     <script src="/app.js" type="module"></script>
   </body>
 </html>
