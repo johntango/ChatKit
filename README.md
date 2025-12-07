@@ -17,16 +17,42 @@ npm run dev
 
 Visit `http://localhost:3000` to see the ChatKit shell. Update `AGENT_WORKFLOW_URL` in `.env` (or export it in your shell) so the panel binds to the workflow you want to expose.
 
+## Deploying the ChatKit shell
+
+Because this is just Express + static assets, you can deploy it anywhere that runs Node 18+:
+
+1. **Local dev / Codespaces**
+
+- Copy `.env.example`→`.env` and fill in the workflow URL + API key.
+- Run `npm run dev` (local) or use the Codespaces “Run” button.
+- Confirm `sessionApiEnabled` via `curl -s $PUBLIC_BASE_URL/api/config | jq` before sharing the link.
+
+2. **Self-hosted VM / Docker**
+
+- Build the app: `npm ci && npm run start` or bake into a Dockerfile with `node server.js`.
+- Provide the same `.env` values via environment variables or a secrets manager.
+
+3. **PaaS (Render, Railway, Fly.io, etc.)**
+
+- Set the platform’s start command to `npm run start`.
+- Configure env vars in the provider dashboard.
+
+4. **Static frontends embedding the shell**
+
+- Deploy this Express app separately and iframe it where needed, using `PUBLIC_BASE_URL` to ensure the panel reports the correct origin for Codespaces or custom domains.
+
+When moving between hosts, remember to restart the server after changing `.env`, and keep your `OPENAI_API_KEY` private—only the backend should see it.
+
 ### Environment variables
 
-| Name | Required | Description |
-| --- | --- | --- |
-| `AGENT_WORKFLOW_URL` | ✅ | Agent Builder share link; also used to derive the workflow ID when unspecified. |
-| `AGENT_WORKFLOW_ID` | ➖ | Overrides the derived workflow ID (format `wf_…`). |
-| `AGENT_WORKFLOW_PUBLIC_KEY` | ➖ | Domain key (`domain_pk_…`) for browser-only integrations. Not needed when using session tokens. |
-| `OPENAI_API_KEY` | ➖ | Standard API key (server-side only). Required for the session-token flow. |
-| `PUBLIC_BASE_URL` | ➖ | Public origin for `/api/config` (Codespaces, Vercel, etc.). Defaults to auto-detection. |
-| `PORT` | ➖ | Express port (default `3000`). |
+| Name                        | Required | Description                                                                                     |
+| --------------------------- | -------- | ----------------------------------------------------------------------------------------------- |
+| `AGENT_WORKFLOW_URL`        | ✅       | Agent Builder share link; also used to derive the workflow ID when unspecified.                 |
+| `AGENT_WORKFLOW_ID`         | ➖       | Overrides the derived workflow ID (format `wf_…`).                                              |
+| `AGENT_WORKFLOW_PUBLIC_KEY` | ➖       | Domain key (`domain_pk_…`) for browser-only integrations. Not needed when using session tokens. |
+| `OPENAI_API_KEY`            | ➖       | Standard API key (server-side only). Required for the session-token flow.                       |
+| `PUBLIC_BASE_URL`           | ➖       | Public origin for `/api/config` (Codespaces, Vercel, etc.). Defaults to auto-detection.         |
+| `PORT`                      | ➖       | Express port (default `3000`).                                                                  |
 
 ## Scripts
 
