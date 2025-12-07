@@ -26,6 +26,13 @@ Visit `http://localhost:3000` to see the ChatKit shell. Update `AGENT_WORKFLOW_U
 - `PUBLIC_BASE_URL` – override for the externally reachable origin. When unset, the server auto-detects Codespaces URLs (e.g., `https://$CODESPACE_NAME-$PORT.app.github.dev`), then falls back to `http://localhost:$PORT`.
 - `PORT` – local port for the Express server (default `3000`).
 
+## Environment variables
+
+- `AGENT_WORKFLOW_URL` – Agent Builder share link used for the CTA in the hero + header actions inside ChatKit.
+- `OPENAI_API_KEY` – API key used server-side to mint ChatKit session tokens. Never expose this to the browser.
+- `CHATKIT_WORKFLOW_ID` – Workflow id (e.g., `wf_1234...`) targeted when creating ChatKit sessions via the OpenAI API.
+- `PORT` – Optional override for the Express server port (defaults to `3000`).
+
 ## Scripts
 
 - `npm run dev` – start the server with automatic reloads via nodemon.
@@ -44,8 +51,13 @@ public/             # Static assets served by Express
 
 ## API surface
 
+<<<<<<< HEAD
 - `GET /api/config` returns the resolved `agentWorkflowUrl`, `agentWorkflowPublicKey`, and `publicBaseUrl` so the frontend can stay decoupled from secrets.
 - `POST /api/chatkit-session` exchanges your `OPENAI_API_KEY` + workflow ID for a short-lived ChatKit `client_secret`, letting the browser start a session without ever seeing your API key.
+=======
+- `GET /api/config` returns the resolved `agentWorkflowUrl` so the frontend can stay decoupled from secrets.
+- `POST /api/chatkit/session` accepts `{ deviceId }` and proxies ChatKit session creation via your OpenAI API key, returning a short-lived `token`.
+>>>>>>> e44a1dcaba1b1d4ce3e1852450147d8dd0b896a7
 - `GET /healthz` exposes a simple uptime probe for Docker/Kubernetes health checks.
 
 ## Running on a new Codespace URL
