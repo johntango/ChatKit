@@ -11,6 +11,21 @@ A lightweight Express server that exposes the hosted `<openai-chatkit>` widget a
 
 ```sh
 cp .env.example .env # optional, then edit AGENT_WORKFLOW_URL
+# ===== Example .env==================
+# Replace with the OpenAI Agent Builder workflow URL you want to surface in the UI.
+AGENT_WORKFLOW_URL=https://platform.openai.com/agent-builder/workflows/wf_69334814204c819093d7871xxxxxxxx
+# Provide an OpenAI API key that can create ChatKit sessions.
+OPENAI_API_KEY=
+# Optionally change the port ChatKit listens on.
+# PORT=3000
+PORT=3000
+# Optionally set the AGENT_WORKFLOW_ID
+AGENT_WORKFLOW_ID=wf_69334814204xxxxxx
+
+
+
+
+
 npm install
 npm run dev
 ```
