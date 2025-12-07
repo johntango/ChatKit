@@ -3,118 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ChatKit + OpenAI Agent Builder</title>
+    <title>ChatKit Session Shell</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <header class="hero">
-      <div class="hero__content">
-        <p class="eyebrow">ChatKit Lab</p>
-        <h1>Prototype faster with ChatKit + OpenAI Agent Builder</h1>
-        <p class="lead">
-          Launch a guided experience that connects your ChatKit flows with an
-          OpenAI Agent Builder workflow in a single click. Ideal for demos,
-          workshops, and experimentation.
+    <div class="chatkit-shell">
+      <header class="chatkit-shell__header">
+        <h1>ChatKit Session</h1>
+        <p>
+          This lightweight shell mounts the hosted ChatKit widget so you can
+          reuse it inside other apps, dashboards, or demos.
         </p>
-        <div class="hero__actions">
-          <a
-            class="button primary"
-            data-workflow-link
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open Agent Builder Workflow
-          </a>
-          <button class="button ghost" id="copy-link">
-            Copy Shareable Link
-          </button>
+      </header>
+
+      <section class="chatkit-shell__panel" aria-live="polite">
+        <openai-chatkit
+          id="chatkit-panel"
+          data-color-scheme="dark"
+        ></openai-chatkit>
+        <div class="chatkit-panel__fallback" data-chatkit-fallback>
+          <p>Loading ChatKit…</p>
+          <p class="micro">
+            If the panel fails to appear, ensure your Codespace URL is allowed
+            in the OpenAI dashboard or that session tokens are enabled.
+          </p>
         </div>
-        <p class="micro" id="workflow-url"></p>
-      </div>
-      <div class="hero__card">
-        <div class="status-chip">Live Preview</div>
-        <h2>ChatKit Session</h2>
-        <ul>
-          <li><span>Next Step</span><strong>Configure agent tools</strong></li>
-          <li><span>Audience</span><strong>Course cohorts & demos</strong></li>
-          <li>
-            <span>Workflow</span
-            ><strong class="workflow-label">Loading…</strong>
-          </li>
-        </ul>
-      </div>
-    </header>
-
-    <main>
-      <section class="grid">
-        <article>
-          <h3>1. Spin up ChatKit locally</h3>
-          <p>
-            Run the Express server, customize the copy, and drop in your own
-            assets.
-          </p>
-        </article>
-        <article>
-          <h3>2. Share the Agent Builder link</h3>
-          <p>
-            Use the generated share URL so teammates jump straight into your
-            curated workflow.
-          </p>
-        </article>
-        <article>
-          <h3>3. Iterate with live reload</h3>
-          <p>
-            Use nodemon for instant feedback as you refine prompts, tools, and
-            UI polish.
-          </p>
-        </article>
-        <section class="chatkit-lab">
-          <div class="chatkit-lab__copy">
-            <p class="eyebrow">Embedded ChatKit</p>
-            <h2>Preview the Agent Builder workflow right inside ChatKit</h2>
-            <p>
-              The panel on the right loads OpenAI&apos;s hosted ChatKit widget
-              from the official CDN. We configure its header action so anyone
-              can jump directly into the linked Agent Builder workflow.
-            </p>
-            <ul>
-              <li>
-                Hosted widget served from <code>cdn.platform.openai.com</code>
-              </li>
-              <li>
-                Header CTA mirrors the workflow link you configure in the
-                backend
-              </li>
-              <li>
-                Ready to extend with client tools or workflow streaming later
-              </li>
-            </ul>
-          </div>
-          <div class="chatkit-lab__panel" aria-live="polite">
-            <div class="chatkit-lab__panel-frame">
-              <openai-chatkit
-                id="chatkit-panel"
-                data-color-scheme="dark"
-              ></openai-chatkit>
-              <div class="chatkit-panel__fallback" data-chatkit-fallback>
-                <p>Loading ChatKit…</p>
-                <p class="micro">
-                  If nothing appears, verify the CDN script is reachable from
-                  your network.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
       </section>
-    </main>
-
-    <footer>
-      <p>
-        Need to point at a different workflow? Set
-        <code>AGENT_WORKFLOW_URL</code> before starting the server.
-      </p>
-    </footer>
+    </div>
 
     <script
       src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
